@@ -1,0 +1,8 @@
+# ignore build output
+dist/
+build/
+
+node_modules/
+
+package.json
+pnpm-lock.yaml
