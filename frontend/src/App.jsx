@@ -6,9 +6,24 @@ function App() {
     useEffect(() => {
         // simulasi ambil data
         const data = [
-            { id: 1, name: "Sepatu", price: 200000, desc: "Sepatu premium berbahan kulit" },
-            { id: 2, name: "Tas", price: 160000, desc: "Tas pesta berbahan kulit" },
-            { id: 3, name: "Jaket", price: 200000, desc: "Jaket kulit premium berwarna hitam" }
+            {
+                id: 1,
+                name: "Sepatu",
+                price: 200000,
+                desc: "Sepatu premium berbahan kulit",
+            },
+            {
+                id: 2,
+                name: "Tas",
+                price: 160000,
+                desc: "Tas pesta berbahan kulit",
+            },
+            {
+                id: 3,
+                name: "Jaket",
+                price: 200000,
+                desc: "Jaket kulit premium berwarna hitam",
+            },
         ];
         setProducts(data);
     }, []);
@@ -18,11 +33,12 @@ function App() {
             <h1>Daftar Produk</h1>
 
             {products.map((p) => (
-                <div key={p.id}>
-                    <h3>{p.name}</h3>
-                    <p>Harga: Rp. {p.price}</p>
-                    <small>{p.desc}</small>
-                </div>
+                <ProductCard
+                    key={p.id}
+                    name={p.name}
+                    price={p.price}
+                    desc={p.desc}
+                />
             ))}
         </div>
     );
