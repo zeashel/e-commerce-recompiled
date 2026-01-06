@@ -1,4 +1,4 @@
-import "../scss/global.scss";
+import "../scss/product-card.scss";
 
 function ProductCard({ name, price, desc, img, discount }) {
     let priceElem = null;
@@ -14,8 +14,8 @@ function ProductCard({ name, price, desc, img, discount }) {
                 </span>
                 <p className="card-text text-primary mb-1">
                     Rp{price * (discount / 100)}{" "}
-                    <small className="text-muted opacity-50">
-                        <s>Rp{price}</s>
+                    <small className="text-muted opacity-50 text-decoration-line-through">
+                        Rp{price}
                     </small>
                 </p>
             </>
