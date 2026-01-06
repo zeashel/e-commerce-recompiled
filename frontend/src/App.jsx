@@ -6,15 +6,16 @@ import Navbar from "./components/Navbar";
 
 function App() {
     return (
-        <div>
+        <>
             <Navbar />
-
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/products/:id" element={<ProductDetail />} />
-            </Routes>
-        </div>
+            <div style={{ paddingTop: "70px" }}>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/products" element={<Products />} />
+                    <Route path="/products/:id" element={<ProductDetail />} />
+                </Routes>
+            </div>
+        </>
     );
 }
 
