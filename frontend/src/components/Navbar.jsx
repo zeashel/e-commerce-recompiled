@@ -4,7 +4,7 @@ function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg bg-body-secondary bg-opacity-25 shadow mb-3">
             <div className="container-fluid">
-                <NavLink className="navbar-brand" to="/">
+                <NavLink className="navbar-brand fw-bold" to="/">
                     Online Shop
                 </NavLink>
 
