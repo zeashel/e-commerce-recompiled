@@ -1,0 +1,9 @@
+// override variables BEFORE importing the rest
+// $border-radius: 0;        // global corner rounding
+// $font-family-sans-serif: monospace;
+
+$primary: #b53059;
+$body-bg-dark: #1a1a1a;
+
+// import Bootstrap
+@import "bootstrap/scss/bootstrap";

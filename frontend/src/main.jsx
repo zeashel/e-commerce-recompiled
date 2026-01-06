@@ -1,4 +1,8 @@
-import "bootstrap/dist/css/bootstrap.min.css";
+// bootstrap
+import "./scss/custom.scss";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
+// react
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
