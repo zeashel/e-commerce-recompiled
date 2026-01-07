@@ -1,6 +1,6 @@
 import "../scss/product-card.scss";
 
-function ProductCard({ name, price, desc, img, discount }) {
+function ProductCard({ id, name, price, desc, img, discount }) {
     let priceElem = null;
 
     if (discount !== null && discount !== undefined) {
@@ -25,7 +25,7 @@ function ProductCard({ name, price, desc, img, discount }) {
     }
 
     return (
-        <div className="card product-card h-100">
+        <div className="card product-card h-100" id={id}>
             <div className="product-image-wrapper">
                 <img src={img} className="card-img-top img-fluid" alt={name} />
             </div>
