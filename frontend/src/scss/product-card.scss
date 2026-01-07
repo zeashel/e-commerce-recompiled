@@ -1,11 +1,12 @@
 .product-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 }
 
 .product-card:hover {
     transform: translateY(-6px);
     z-index: 3;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.47);
+    color: var(--bs-primary-text-emphasis);
 }
 
 /* img zoom */
