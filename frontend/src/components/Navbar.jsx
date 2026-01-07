@@ -7,13 +7,13 @@ function Navbar() {
                 <NavLink className="navbar-brand fw-bold" to="/">
                     <img
                         style={{
-                            marginInlineEnd: "5px",
-                            marginBottom: "3px",
+                            marginInlineEnd: "0.25em",
+                            marginBottom: "0.15em",
                         }}
                         src="img/logo.svg"
                         alt="Logo"
                     />
-                    Online Shop
+                    Recompiled.
                 </NavLink>
 
                 <button
