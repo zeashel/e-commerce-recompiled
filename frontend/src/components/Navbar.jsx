@@ -5,14 +5,26 @@ function Navbar() {
         <nav className="navbar navbar-expand-lg bg-body-secondary shadow mb-3 sticky-top z-100">
             <div className="container-fluid">
                 <NavLink className="navbar-brand fw-bold" to="/">
-                    <img
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1.25em"
+                        height="1.25em"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        className="lucide text-primary"
                         style={{
                             marginInlineEnd: "0.25em",
                             marginBottom: "0.15em",
                         }}
-                        src="img/logo.svg"
-                        alt="Logo"
-                    />
+                    >
+                        <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
+                        <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
+                        <path d="M7 3v4a1 1 0 0 0 1 1h7" />
+                    </svg>
                     Recompiled.
                 </NavLink>
 
