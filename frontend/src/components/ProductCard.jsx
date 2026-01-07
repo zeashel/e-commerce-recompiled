@@ -7,7 +7,7 @@ function ProductCard({ name, price, desc, img, discount }) {
         priceElem = (
             <>
                 <span
-                    class="position-absolute translate-middle badge rounded-pill bg-primary"
+                    className="position-absolute translate-middle badge rounded-pill bg-primary"
                     style={{ top: "5%", left: "82%" }}
                 >
                     {discount}% OFF
