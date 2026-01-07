@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Carousel from "../components/Carousel";
 
 export default function Home() {
     return (
@@ -10,6 +11,7 @@ export default function Home() {
                 Retro technology, carefully{" "}
                 <span className=" text-body">recompiled</span> for today.
             </p>
+            <Carousel />
             <Link className="btn btn-primary btn-lg hover-btn" to="/products">
                 Browse Inventory
             </Link>
