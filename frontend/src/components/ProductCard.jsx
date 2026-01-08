@@ -14,7 +14,7 @@ function ProductCard({ id, name, price, desc, img, discount }) {
                     {discount}% OFF
                 </span>
                 <p className="card-text text-primary mb-1">
-                    Rp{price * (discount / 100)}{" "}
+                    Rp{price * (1 - discount / 100)}{" "}
                     <small className="text-muted opacity-50 text-decoration-line-through">
                         Rp{price}
                     </small>
