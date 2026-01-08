@@ -3,7 +3,7 @@ import Carousel from "../components/Carousel";
 
 export default function Home() {
     return (
-        <div className="container pt-4 text-center">
+        <div className="text-center">
             <h1 className="display-1 fw-bold text-decoration-underline link-underline-primary mb-2">
                 Recompiled.
             </h1>

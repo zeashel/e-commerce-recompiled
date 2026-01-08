@@ -15,7 +15,7 @@ function Products() {
     }, []);
 
     return (
-        <div className="container py-4">
+        <div>
             <h1 className="mb-4">Product List</h1>
 
             <div className="product-grid">
