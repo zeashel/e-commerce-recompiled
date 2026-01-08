@@ -11,7 +11,7 @@ export default function Home() {
                 Retro technology, carefully{" "}
                 <span className=" text-body">recompiled</span> for today.
             </p>
-            <div className="btn-home-parent d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2 mb-3 w-100">
+            <div className="btn-home-parent d-flex justify-content-center align-items-center gap-2 mb-3 w-100">
                 <Link
                     className="btn-home btn btn-primary btn-lg hover-btn"
                     to="/products"
