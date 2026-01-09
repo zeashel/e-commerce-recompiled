@@ -1,5 +1,6 @@
 const express = require("express");
-const connectDB = require("./db"); // connect to Mongodb database
+const mongoose = require("mongoose");
+const Product = require("./models/Product");
 
 const app = express();
 const port = 8000;
@@ -7,9 +8,12 @@ const port = 8000;
 app.use(express.json()); // for POST/PUT
 
 // MongoDB
-connectDB();
+mongoose
+    .connect("mongodb://127.0.0.1:27017/online_shop")
+    .then(() => console.log("MongoDB connected"))
+    .catch((err) => console.error(err));
 
-const Product = require("./models/Product.js"); // use Product model schema
+
 
 // RESTful API with CRUD
 
