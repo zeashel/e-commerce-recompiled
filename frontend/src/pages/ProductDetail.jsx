@@ -38,7 +38,7 @@ export default function ProductDetail() {
         );
 
     return (
-        <div className="container pt-4">
+        <div className=" pt-4">
             <div className="row">
                 <div className="col-md-4">
                     <img

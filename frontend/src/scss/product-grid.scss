@@ -5,7 +5,7 @@
 
     // bootstraps breakpoints https://getbootstrap.com/docs/5.3/layout/breakpoints/
     // custom (very small devices)
-    @media (min-width: 310px) {
+    @media (min-width: 340px) {
         grid-template-columns: repeat(2, 1fr);
     }
 
