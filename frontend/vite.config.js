@@ -5,4 +5,11 @@ console.log("VITE CONFIG LOADED");
 
 export default defineConfig({
     plugins: [react()],
+    css: {
+        preprocessorOptions: {
+            scss: {
+                quietDeps: true
+            }
+        }
+    }
 });
