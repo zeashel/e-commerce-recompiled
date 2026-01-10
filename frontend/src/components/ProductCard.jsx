@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "../scss/product-card.scss";
+import { API_URL } from "../config";
 
 function ProductCard({ id, name, price, desc, img, discount }) {
     let priceElem = null;
@@ -30,7 +31,7 @@ function ProductCard({ id, name, price, desc, img, discount }) {
             <div className="card product-card h-100" id={id}>
                 <div className="product-image-wrapper">
                     <img
-                        src={img}
+                        src={`${API_URL}${img}`}
                         className="card-img-top img-fluid"
                         alt={name}
                     />
