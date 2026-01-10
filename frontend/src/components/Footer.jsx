@@ -41,7 +41,7 @@ function Footer() {
                     </svg>
                 </a>
                 <a
-                    href="https://github.com/zeashel/ecommerce-assignment"
+                    href="https://github.com/zeashel/e-commerce-recompiled"
                     title="Source Code of this Web App"
                     alt="Source Code"
                 >
