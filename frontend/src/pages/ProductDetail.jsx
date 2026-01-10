@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import BackButton from "../components/BackButton";
 import { getProductById } from "../services/productService";
 import { resolveImageUrl } from "../utils/resolveImageUrl";
 
@@ -38,7 +39,8 @@ export default function ProductDetail() {
         );
 
     return (
-        <div className=" pt-4">
+        <div>
+            <BackButton />
             <div className="row">
                 <div className="col-md-4">
                     <img
