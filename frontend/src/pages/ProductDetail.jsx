@@ -10,6 +10,7 @@ export default function ProductDetail() {
 
     useEffect(() => {
         getProductById(id).then((data) => setProduct(data));
+        console.log(`fetched product id ${id} from API`);
     }, [id]);
 
     if (!product) return <p className="display-5 text-center">Loading...</p>;
