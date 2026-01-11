@@ -11,5 +11,6 @@ export default defineConfig({
                 quietDeps: true
             }
         }
-    }
+    },
+    base: '/e-commerce-recompiled/'
 });
