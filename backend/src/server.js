@@ -19,10 +19,19 @@ connectDB().catch(console.error);
 
 
 
-// RESTful API with CRUD
+/**
+ * CRUD with RESTful API 
+ * 
+ * endpoints:
+ * - POST /api/products
+ * - GET /api/products
+ * - GET /api/products/:id
+ * - PUT /api/products/:id
+ * - DELETE /api/products/:id
+ */
 
 // CREATE
-// POST new product
+// create/post new 1 product
 
 app.post("/api/products", async (req, res) => {
     try {
@@ -56,6 +65,7 @@ app.get("/api/products/:id", async (req, res) => {
 });
 
 // UPDATE
+// put/update 1 product by their id
 
 app.put("/api/products/:id", async (req, res) => {
     try {
@@ -76,6 +86,7 @@ app.put("/api/products/:id", async (req, res) => {
 });
 
 // DELETE
+// delete 1 product by their id
 
 app.delete("/api/products/:id", async (req, res) => {
     try {
@@ -90,6 +101,8 @@ app.delete("/api/products/:id", async (req, res) => {
         res.status(400).json({ message: "Invalid ID" });
     }
 });
+
+
 
 // expose images
 app.use("/img", express.static("./public/img"));
