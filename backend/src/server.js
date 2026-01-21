@@ -22,6 +22,9 @@ require("dotenv").config();
 
 // authentication middleware
 const authMiddleware = require("./middleware/authMiddleware");
+// apply middleware to all Product API CRUD operations
+app.use("/api/products", authMiddleware);
+
 
 
 /**
@@ -38,7 +41,7 @@ const authMiddleware = require("./middleware/authMiddleware");
 // CREATE
 // create/post new 1 product
 
-app.post("/api/products", authMiddleware, async (req, res) => {
+app.post("/api/products", async (req, res) => {
     try {
         const product = new Product(req.body);
         const savedProduct = await product.save();
@@ -51,13 +54,13 @@ app.post("/api/products", authMiddleware, async (req, res) => {
 // READ
 
 // endpoint getProducts (get all products)
-app.get("/api/products", authMiddleware, async (req, res) => {
+app.get("/api/products", async (req, res) => {
     const products = await Product.find();
     res.json(products);
 });
 
 // endpoint getProductsById (get 1 product by their id)
-app.get("/api/products/:id", authMiddleware, async (req, res) => {
+app.get("/api/products/:id", async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
         if (!product) {
@@ -72,7 +75,7 @@ app.get("/api/products/:id", authMiddleware, async (req, res) => {
 // UPDATE
 // put/update 1 product by their id
 
-app.put("/api/products/:id", authMiddleware, async (req, res) => {
+app.put("/api/products/:id", async (req, res) => {
     try {
         const updatedProduct = await Product.findByIdAndUpdate(
             req.params.id,
@@ -93,7 +96,7 @@ app.put("/api/products/:id", authMiddleware, async (req, res) => {
 // DELETE
 // delete 1 product by their id
 
-app.delete("/api/products/:id", authMiddleware, async (req, res) => {
+app.delete("/api/products/:id", async (req, res) => {
     try {
         const deletedProduct = await Product.findByIdAndDelete(req.params.id);
 
