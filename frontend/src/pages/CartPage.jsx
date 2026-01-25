@@ -1,6 +1,7 @@
 // src/pages/CartPage.jsx
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getCart, removeFromCart } from "../services/cartService";
+import { getCart, removeFromCart, clearCart } from "../services/cartService";
 import { resolveImageUrl } from "../utils/resolveImageUrl";
 
 export default function CartPage() {
@@ -15,45 +16,114 @@ export default function CartPage() {
         0
     );
 
-    if (cart.length === 0) {
-        return <h1 className="text-center">Cart is empty</h1>;
-    }
-
     return (
-        <div className="container">
-            <h2>My Cart</h2>
+        <div>
+            <h1 className="mb-4">My Cart</h1>
 
-            {cart.map((item) => (
-                <div
-                    key={item.productId}
-                    className="d-flex justify-content-between mb-2"
-                >
-                    <img
-                        src={resolveImageUrl(item.img)}
-                        className="card-img-top img-fluid"
-                        alt={item.name}
-                    />
-                    <div>
-                        <strong>{item.name}</strong>
-                        <p>Qty: {item.quantity}</p>
-                    </div>
-                    <div>
-                        <p>Rp {item.price * item.quantity}</p>
-                        <button
-                            className="btn btn-sm btn-danger"
-                            onClick={() => {
-                                removeFromCart(item.productId);
-                                setCart(getCart());
-                            }}
-                        >
-                            Remove
-                        </button>
-                    </div>
+            {cart.length === 0 ? (
+                <div className="card">
+                    <p className="text-muted text-center h3 fw-light mt-5">
+                        Your cart is empty.
+                    </p>
+                    <Link to="/products">
+                        <p className="text-center h5 fw-light mb-5">
+                            Shop for Products
+                        </p>
+                    </Link>
                 </div>
-            ))}
+            ) : (
+                <>
+                    {cart.map((item) => (
+                        <div
+                            key={item.productId}
+                            className="card mb-3 shadow-sm"
+                        >
+                            <div className="card-body d-flex align-items-center justify-content-between">
+                                {/* product image */}
+                                <img
+                                    src={resolveImageUrl(item.img)}
+                                    alt={item.name}
+                                    className="img-fluid rounded"
+                                    style={{
+                                        width: "80px",
+                                        height: "80px",
+                                        objectFit: "cover",
+                                    }}
+                                />
 
-            <hr />
-            <h4>Total: Rp {total}</h4>
+                                {/* product info */}
+                                <div className="flex-grow-1 ms-3">
+                                    <h6 className="mb-1">{item.name}</h6>
+                                    <small className="text-muted">
+                                        Qty: {item.quantity}
+                                    </small>
+                                </div>
+
+                                {/* price */}
+                                <div className="text-end me-3">
+                                    <div>
+                                        <strong>
+                                            Rp
+                                            {(
+                                                item.price * item.quantity
+                                            ).toLocaleString("id-ID")}
+                                        </strong>
+                                    </div>
+                                    {/* actions */}
+                                    <div>
+                                        <button
+                                            className="btn btn-sm btn-outline-danger"
+                                            style={{
+                                                padding: "0.05rem 0.5rem",
+                                            }}
+                                            onClick={() => {
+                                                removeFromCart(item.productId);
+                                                setCart(getCart());
+                                            }}
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+
+                    {/* cart summary */}
+                    <div className="card mt-4">
+                        <div className="card-body d-flex justify-content-between align-items-center">
+                            <h5 className="mb-0">
+                                Total:{" "}
+                                <strong>
+                                    Rp{total.toLocaleString("id-ID")}
+                                </strong>
+                            </h5>
+
+                            <div className="d-flex gap-2">
+                                <button
+                                    className="btn btn-outline-secondary hover-btn"
+                                    onClick={() => {
+                                        clearCart();
+                                        setCart(getCart());
+                                    }}
+                                >
+                                    Clear Cart
+                                </button>
+
+                                <button
+                                    className="btn btn-primary hover-btn"
+                                    onClick={() => {
+                                        // placeholder
+                                        alert("Checkout clicked (Demo)");
+                                    }}
+                                >
+                                    Checkout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )}
         </div>
     );
 }
