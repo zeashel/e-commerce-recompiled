@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import BackButton from "../components/BackButton";
 import { getProductById } from "../services/productService";
+import { addToCart } from "../services/cartService";
 import { resolveImageUrl } from "../utils/resolveImageUrl";
 
 export default function ProductDetail() {
@@ -51,7 +52,17 @@ export default function ProductDetail() {
                         src={resolveImageUrl(product.img)}
                     />
                     <div className="d-flex gap-2 my-3 w-100">
-                        <button className="btn btn-primary btn-lg hover-btn">
+                        <button
+                            className="btn btn-primary btn-lg hover-btn"
+                            onClick={() =>
+                                addToCart({
+                                    productId: product._id,
+                                    name: product.name,
+                                    price: product.price,
+                                    img: product.img,
+                                })
+                            }
+                        >
                             Add to Cart
                         </button>
                         <button
