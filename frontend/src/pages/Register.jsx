@@ -30,7 +30,7 @@ export default function Register() {
             <div className="row justify-content-center">
                 <div className="col-md-5">
                     <h1 className="mb-4 text-center display-3 fw-normal">
-                        Register
+                        Start Shopping
                     </h1>
 
                     {error && (

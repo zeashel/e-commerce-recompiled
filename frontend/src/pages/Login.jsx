@@ -36,7 +36,7 @@ export default function Login() {
             <div className="row justify-content-center">
                 <div className="col-md-5">
                     <h1 className="mb-4 text-center display-3 fw-normal">
-                        Login
+                        Welcome Back
                     </h1>
 
                     {error && (
