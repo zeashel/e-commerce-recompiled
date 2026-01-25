@@ -1,29 +1,23 @@
 import { API_URL } from "../config";
 
-export async function login(email, password) {
+export async function login(username, password) {
     const res = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ username, password }),
     });
 
     if (!res.ok) {
-        throw new Error("Login failed");
+        const data = await res.json();
+        throw new Error(data.message || "Invalid credentials");
     }
 
-    return res.json(); // { token }
-}
+    const data = await res.json();
 
-export function logout() {
-    localStorage.removeItem("token");
-}
+    // simpan token
+    localStorage.setItem("token", data.token);
 
-export function getToken() {
-    return localStorage.getItem("token");
-}
-
-export function isAuthenticated() {
-    return !!localStorage.getItem("token");
+    return data;
 }
