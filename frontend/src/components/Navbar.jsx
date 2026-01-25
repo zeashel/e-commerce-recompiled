@@ -128,7 +128,7 @@ function Navbar() {
                                             }}
                                         >
                                             {cartCount}
-                                            <span class="visually-hidden">
+                                            <span className="visually-hidden">
                                                 items in cart
                                             </span>
                                         </span>
