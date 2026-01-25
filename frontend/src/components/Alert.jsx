@@ -1,23 +1,45 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import "../scss/alert.scss";
 
-function Alert({ message, type = "danger", onClose, duration = 5000 }) {
+export default function Alert({
+    message,
+    type = "danger",
+    onClose,
+    duration = 5000,
+}) {
+    const [visible, setVisible] = useState(false);
+
     useEffect(() => {
         if (!message) return;
 
-        const id = setTimeout(() => {
+        // let initial styles render first
+        requestAnimationFrame(() => {
+            setVisible(true);
+        });
+
+        const hideTimer = setTimeout(() => {
+            setVisible(false);
+        }, duration - 300);
+
+        const removeTimer = setTimeout(() => {
             onClose?.();
         }, duration);
 
-        return () => clearTimeout(id);
+        return () => {
+            clearTimeout(hideTimer);
+            clearTimeout(removeTimer);
+        };
     }, [message, duration, onClose]);
 
     if (!message) return null;
 
     return (
-        <div className="position-fixed top-0 start-50 translate-middle-x mt-5 z-100 h4 fw-normal">
+        <div
+            className={`alert-wrapper h4 fw-normal ${
+                visible ? "alert-enter" : "alert-exit"
+            }`}
+        >
             <div className={`alert alert-${type}`}>{message}</div>
         </div>
     );
 }
-
-export default Alert;
