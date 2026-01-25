@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/authService";
 
 export default function Login() {
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (!error) return;
@@ -14,52 +16,71 @@ export default function Login() {
         return () => clearTimeout(id);
     }, [error]);
 
-    const handleSubmit = async (e) => {
+    async function handleSubmit(e) {
         e.preventDefault();
+        setError("");
+        setLoading(true);
+
         try {
-            const data = await login(email, password);
-            localStorage.setItem("token", data.token);
+            await login(email, password);
             navigate("/products");
         } catch (err) {
-            const msg =
-                err?.response?.data?.message || "Email or password incorrect";
-            setError(msg);
+            setError(err.message);
+        } finally {
+            setLoading(false);
         }
-    };
+    }
 
     return (
-        <div className="d-flex justify-content-center align-items-center h-100 my-5">
-            <div className="container" style={{ maxWidth: 450 }}>
-                {error && (
-                    <div className="position-fixed top-0 start-50 translate-middle-x mt-5 z-100">
-                        <div className="alert alert-danger mt-4">{error}</div>
-                    </div>
-                )}
-                <h1 className="mb-3">Login</h1>
+        <div className="container py-5">
+            <div className="row justify-content-center">
+                <div className="col-md-5">
+                    <h1 className="mb-4 text-center">Login</h1>
 
-                <form onSubmit={handleSubmit} style={{ marginBottom: 0 }}>
-                    <input
-                        type="email"
-                        className="form-control mb-2"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
+                    {error && (
+                        <div className="position-fixed top-0 start-50 translate-middle-x mt-5 z-100">
+                            <div className="alert alert-danger mt-4">
+                                {error}
+                            </div>
+                        </div>
+                    )}
 
-                    <input
-                        type="password"
-                        className="form-control mb-3"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <label className="form-label">Email</label>
+                            <input
+                                type="email"
+                                className="form-control"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
 
-                    <button type="submit" className="btn btn-primary w-100">
-                        Login
-                    </button>
-                </form>
+                        <div className="mb-3">
+                            <label className="form-label">Password</label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="btn btn-primary w-100 py-2"
+                            disabled={loading}
+                        >
+                            {loading ? "Logging in..." : "Login"}
+                        </button>
+                    </form>
+
+                    <p className="mt-3 text-center">
+                        Don't have an account? <a href="/register">Register</a>
+                    </p>
+                </div>
             </div>
         </div>
     );
