@@ -128,6 +128,7 @@ function Navbar() {
                                     style={{
                                         fontSize: "0.6rem",
                                     }}
+                                    aria-live="polite"
                                 >
                                     {displayCount}
                                     <span className="visually-hidden">
