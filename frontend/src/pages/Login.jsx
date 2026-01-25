@@ -27,11 +27,13 @@ export default function Login() {
 
     return (
         <div className="container mt-5" style={{ maxWidth: 450 }}>
+            <div style={{ minHeight: 56 /* match alert height */ }}>
+                {error && <div className="alert alert-danger">{error}</div>}
+            </div>
+
             <h1 className="mb-3">Login</h1>
 
-            {error && <div className="alert alert-danger">{error}</div>}
-
-            <form onSubmit={handleSubmit}>
+            <form className="mb-5" onSubmit={handleSubmit}>
                 <input
                     type="email"
                     className="form-control mb-2"
