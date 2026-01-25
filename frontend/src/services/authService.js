@@ -25,12 +25,17 @@ export async function login(username, password) {
 export async function register(username, password) {
     const res = await fetch(`${API_URL}/api/auth/register`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+            "Content-Type": "application/json",
+        },
         body: JSON.stringify({ username, password }),
     });
 
-    console.log("STATUS:", res.status);
+    const data = await res.json();
 
-    const text = await res.text();
-    console.log("RAW RESPONSE:", text);
+    if (!res.ok) {
+        throw new Error(data.message || "Register failed");
+    }
+
+    return data;
 }
