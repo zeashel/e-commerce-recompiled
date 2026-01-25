@@ -1,13 +1,17 @@
 const express = require("express");
 const app = express();
-const port = 8000;
+
+// env
+require("dotenv").config();
+
+const port = process.env.PORT || 8000;
 
 app.use(express.json()); // for POST/PUT
 
 const cors = require("cors");
 app.use(
     cors({
-        origin: "http://localhost:5173",
+        origin: process.env.CLIENT_URL,
     })
 );
 
@@ -26,9 +30,6 @@ const User = require("./models/User");
     }
 })();
 connectDB().catch(console.error);
-
-// env
-require("dotenv").config();
 
 // authentication middleware (all users + admin specific)
 const authMiddleware = require("./middleware/authMiddleware");

@@ -4,7 +4,7 @@ const productSeed = require("./data/productSeed");
 
 async function connectDB() {
     mongoose.set("autoIndex", true);
-    await mongoose.connect("mongodb://127.0.0.1:27017/e-commerce-recompiled");
+    await mongoose.connect(process.env.MONGO_URI);
     console.log("MongoDB connected");
 
     const count = await Product.countDocuments();
