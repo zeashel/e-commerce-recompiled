@@ -63,7 +63,7 @@ export default function ProductDetail() {
             <Alert
                 message={alertMessage}
                 type="success   "
-                duration={3000}
+                duration={1000}
                 onClose={() => setAlertMessage("")}
             />
 
