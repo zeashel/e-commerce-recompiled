@@ -26,34 +26,35 @@ export default function Login() {
     };
 
     return (
-        <div className="container mt-5" style={{ maxWidth: 450 }}>
-            <div style={{ minHeight: 56 /* match alert height */ }}>
+        <div className="d-flex justify-content-center align-items-center h-100 my-5">
+            <div className="container" style={{ maxWidth: 450 }}>
                 {error && <div className="alert alert-danger">{error}</div>}
+                <h1 className="mb-3">Login</h1>
+
+                <form onSubmit={handleSubmit} style={{ marginBottom: 0 }}>
+                    <input
+                        type="email"
+                        className="form-control mb-2"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+
+                    <input
+                        type="password"
+                        className="form-control mb-3"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+
+                    <button type="submit" className="btn btn-primary w-100">
+                        Login
+                    </button>
+                </form>
             </div>
-
-            <h1 className="mb-3">Login</h1>
-
-            <form className="mb-5" onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    className="form-control mb-2"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-
-                <input
-                    type="password"
-                    className="form-control mb-3"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-
-                <button className="btn btn-primary w-100">Login</button>
-            </form>
         </div>
     );
 }
