@@ -11,8 +11,14 @@ import "./scss/global.scss";
 
 import App from "./App";
 
+import { initGA } from "./utils/analytics";
+import GAListener from "./components/GAListener";
+
+initGA();
+
 ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
+        <GAListener />
         <App />
     </BrowserRouter>
 );
