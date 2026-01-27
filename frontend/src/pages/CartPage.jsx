@@ -12,7 +12,7 @@ export default function CartPage() {
     }, []);
 
     const total = cart.reduce(
-        (sum, item) => sum + item.price * item.quantity,
+        (sum, product) => sum + product.price * product.quantity,
         0
     );
 
@@ -33,16 +33,16 @@ export default function CartPage() {
                 </div>
             ) : (
                 <>
-                    {cart.map((item) => (
+                    {cart.map((product) => (
                         <div
-                            key={item.productId}
+                            key={product.productId}
                             className="card mb-3 shadow-sm"
                         >
-                            <div className="card-body d-flex align-items-center justify-content-between p-0">
+                            <div className="card-body d-flex align-products-center justify-content-between p-0">
                                 {/* product image */}
                                 <img
-                                    src={resolveImageUrl(item.img)}
-                                    alt={item.name}
+                                    src={resolveImageUrl(product.img)}
+                                    alt={product.name}
                                     className="img-fluid rounded-start"
                                     style={{
                                         width: "80px",
@@ -53,9 +53,9 @@ export default function CartPage() {
 
                                 {/* product info */}
                                 <div className="flex-grow-1 ms-3">
-                                    <h6 className="mb-1">{item.name}</h6>
+                                    <h6 className="mb-1">{product.name}</h6>
                                     <small className="text-muted">
-                                        Qty: {item.quantity}
+                                        Qty: {product.quantity}
                                     </small>
                                 </div>
 
@@ -65,7 +65,7 @@ export default function CartPage() {
                                         <strong>
                                             Rp
                                             {(
-                                                item.price * item.quantity
+                                                product.price * product.quantity
                                             ).toLocaleString("id-ID")}
                                         </strong>
                                     </div>
@@ -77,7 +77,9 @@ export default function CartPage() {
                                                 padding: "0.05rem 0.5rem",
                                             }}
                                             onClick={() => {
-                                                removeFromCart(item.productId);
+                                                removeFromCart(
+                                                    product.productId
+                                                );
                                                 setCart(getCart());
                                             }}
                                         >
@@ -91,7 +93,7 @@ export default function CartPage() {
 
                     {/* cart summary */}
                     <div className="mt-4">
-                        <div className="d-flex justify-content-between align-items-center">
+                        <div className="d-flex justify-content-between align-products-center">
                             <h5 className="mb-0">
                                 Total:{" "}
                                 <strong>
