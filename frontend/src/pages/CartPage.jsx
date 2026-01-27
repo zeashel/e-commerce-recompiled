@@ -45,8 +45,8 @@ export default function CartPage() {
                                     alt={product.name}
                                     className="img-fluid rounded-start"
                                     style={{
-                                        width: "80px",
-                                        height: "80px",
+                                        width: "100px",
+                                        height: "100px",
                                         objectFit: "cover",
                                     }}
                                 />
@@ -61,15 +61,40 @@ export default function CartPage() {
 
                                 {/* price */}
                                 <div className="text-end me-3">
-                                    <div>
-                                        <strong>
-                                            Rp
-                                            {(
-                                                product.priceDiscounted *
-                                                product.quantity
-                                            ).toLocaleString("id-ID")}
-                                        </strong>
-                                    </div>
+                                    <p className="lh-xs mb-1">
+                                        {product.discount !== null &&
+                                        product.discount !== undefined ? (
+                                            // if discounted
+                                            <>
+                                                <strong className="text-primary-emphasis">
+                                                    Rp
+                                                    {(
+                                                        product.priceDiscounted *
+                                                        product.quantity
+                                                    ).toLocaleString(
+                                                        "id-ID"
+                                                    )}{" "}
+                                                </strong>
+                                                <br />
+                                                <span className="text-smallest text-muted text-decoration-line-through">
+                                                    Rp
+                                                    {(
+                                                        product.price *
+                                                        product.quantity
+                                                    ).toLocaleString("id-ID")}
+                                                </span>
+                                            </>
+                                        ) : (
+                                            // if no discount
+                                            <strong className="lh-base">
+                                                Rp
+                                                {(
+                                                    product.priceDiscounted *
+                                                    product.quantity
+                                                ).toLocaleString("id-ID")}
+                                            </strong>
+                                        )}
+                                    </p>
                                     {/* actions */}
                                     <div>
                                         <button
