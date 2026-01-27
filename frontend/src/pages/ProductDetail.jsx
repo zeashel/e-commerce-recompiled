@@ -18,7 +18,10 @@ export default function ProductDetail() {
     if (!product) return <p className="display-5 text-center">Loading...</p>;
 
     const priceStr = product.price.toLocaleString("id-ID");
-    const priceDiscounted = product.price * (1 - product.discount / 100);
+
+    // handle discounts
+    const discountPercent = product.discount ?? 0; // treats null/undefined as 0
+    const priceDiscounted = product.price * (1 - discountPercent / 100);
     const priceDiscountedStr = priceDiscounted.toLocaleString("id-ID");
 
     function addToCartButton() {
