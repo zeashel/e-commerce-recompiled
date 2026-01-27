@@ -38,7 +38,7 @@ export default function CartPage() {
                             key={product.productId}
                             className="card mb-3 shadow-sm"
                         >
-                            <div className="card-body d-flex align-products-center justify-content-between p-0">
+                            <div className="card-body d-flex align-items-center justify-content-between p-0">
                                 {/* product image */}
                                 <img
                                     src={resolveImageUrl(product.img)}
@@ -93,7 +93,7 @@ export default function CartPage() {
 
                     {/* cart summary */}
                     <div className="mt-4">
-                        <div className="d-flex justify-content-between align-products-center">
+                        <div className="d-flex justify-content-between align-items-center">
                             <h5 className="mb-0">
                                 Total:{" "}
                                 <strong>
