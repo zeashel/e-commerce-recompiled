@@ -8,11 +8,11 @@ export default function CartPage() {
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
-        setCart(getCart());
+        setCart(getCart()); // product.ATTR from ProductDetail.jsx
     }, []);
 
     const total = cart.reduce(
-        (sum, item) => sum + item.price * item.quantity,
+        (sum, product) => sum + product.priceDiscounted * product.quantity,
         0
     );
 
@@ -33,42 +33,68 @@ export default function CartPage() {
                 </div>
             ) : (
                 <>
-                    {cart.map((item) => (
+                    {cart.map((product) => (
                         <div
-                            key={item.productId}
+                            key={product.productId}
                             className="card mb-3 shadow-sm"
                         >
                             <div className="card-body d-flex align-items-center justify-content-between p-0">
                                 {/* product image */}
                                 <img
-                                    src={resolveImageUrl(item.img)}
-                                    alt={item.name}
+                                    src={resolveImageUrl(product.img)}
+                                    alt={product.name}
                                     className="img-fluid rounded-start"
                                     style={{
-                                        width: "80px",
-                                        height: "80px",
+                                        width: "100px",
+                                        height: "100px",
                                         objectFit: "cover",
                                     }}
                                 />
 
                                 {/* product info */}
                                 <div className="flex-grow-1 ms-3">
-                                    <h6 className="mb-1">{item.name}</h6>
+                                    <h6 className="mb-1">{product.name}</h6>
                                     <small className="text-muted">
-                                        Qty: {item.quantity}
+                                        Qty: {product.quantity}
                                     </small>
                                 </div>
 
                                 {/* price */}
                                 <div className="text-end me-3">
-                                    <div>
-                                        <strong>
-                                            Rp
-                                            {(
-                                                item.price * item.quantity
-                                            ).toLocaleString("id-ID")}
-                                        </strong>
-                                    </div>
+                                    <p className="lh-xs mb-1">
+                                        {product.discount !== null &&
+                                        product.discount !== undefined ? (
+                                            // if discounted
+                                            <>
+                                                <strong className="text-primary-emphasis">
+                                                    Rp
+                                                    {(
+                                                        product.priceDiscounted *
+                                                        product.quantity
+                                                    ).toLocaleString(
+                                                        "id-ID"
+                                                    )}{" "}
+                                                </strong>
+                                                <br />
+                                                <span className="text-smallest text-muted text-decoration-line-through">
+                                                    Rp
+                                                    {(
+                                                        product.price *
+                                                        product.quantity
+                                                    ).toLocaleString("id-ID")}
+                                                </span>
+                                            </>
+                                        ) : (
+                                            // if no discount
+                                            <strong className="lh-base">
+                                                Rp
+                                                {(
+                                                    product.priceDiscounted *
+                                                    product.quantity
+                                                ).toLocaleString("id-ID")}
+                                            </strong>
+                                        )}
+                                    </p>
                                     {/* actions */}
                                     <div>
                                         <button
@@ -77,7 +103,9 @@ export default function CartPage() {
                                                 padding: "0.05rem 0.5rem",
                                             }}
                                             onClick={() => {
-                                                removeFromCart(item.productId);
+                                                removeFromCart(
+                                                    product.productId
+                                                );
                                                 setCart(getCart());
                                             }}
                                         >

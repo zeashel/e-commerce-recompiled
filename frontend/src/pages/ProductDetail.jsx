@@ -11,20 +11,6 @@ export default function ProductDetail() {
     const [product, setProduct] = useState(null);
     const [alertMessage, setAlertMessage] = useState("");
 
-    function addToCartAlert() {
-        setAlertMessage(`${product.name} added to cart.`);
-    }
-
-    function addToCartButton() {
-        addToCart({
-            productId: product._id,
-            name: product.name,
-            price: product.price,
-            img: product.img,
-        });
-        addToCartAlert();
-    }
-
     useEffect(() => {
         getProductById(id).then((data) => setProduct(data));
     }, [id]);
@@ -33,17 +19,32 @@ export default function ProductDetail() {
 
     const priceStr = product.price.toLocaleString("id-ID");
 
+    // handle discounts
+    const discountPercent = product.discount ?? 0; // treats null/undefined as 0
+    const priceDiscounted = product.price * (1 - discountPercent / 100);
+    const priceDiscountedStr = priceDiscounted.toLocaleString("id-ID");
+
+    function addToCartButton() {
+        addToCart({
+            productId: product._id,
+            name: product.name,
+            price: product.price,
+            img: product.img,
+            discount: product.discount,
+            priceDiscounted: priceDiscounted,
+        });
+        addToCartAlert();
+    }
+
+    function addToCartAlert() {
+        setAlertMessage(`${product.name} added to cart.`);
+    }
+
     const priceElem =
         // if discounted
         product.discount !== null && product.discount !== undefined ? (
             <>
-                <h2 className="text-primary">
-                    Rp
-                    {(
-                        product.price *
-                        (1 - product.discount / 100)
-                    ).toLocaleString("id-ID")}{" "}
-                </h2>
+                <h2 className="text-primary">Rp{priceDiscountedStr} </h2>
                 <p>
                     <small className="alert alert-primary p-1">
                         {product.discount}% OFF
