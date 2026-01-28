@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import ProductCard from "../components/ProductCard";
-import "../scss/product-grid.scss";
+import { useState, useEffect } from "react";
 import { getProducts } from "../services/productService";
+import "../scss/product-grid.scss";
+import ProductCard from "../components/ProductCard";
+import Loading from "../components/Loading";
 
 function Products() {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState(null);
 
     useEffect(() => {
         // useEffect: run this code after React renders
@@ -13,6 +14,8 @@ function Products() {
             .catch((err) => console.error(err));
         console.log("fetched products from API");
     }, []);
+
+    if (!products) return <Loading />;
 
     return (
         <div>

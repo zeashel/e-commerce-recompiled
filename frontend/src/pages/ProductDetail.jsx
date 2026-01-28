@@ -7,6 +7,7 @@ import { isLoggedIn } from "../utils/authHelper";
 
 import BackButton from "../components/BackButton";
 import Alert from "../components/Alert";
+import Loading from "../components/Loading";
 
 export default function ProductDetail() {
     const { id } = useParams();
@@ -17,7 +18,7 @@ export default function ProductDetail() {
         getProductById(id).then((data) => setProduct(data));
     }, [id]);
 
-    if (!product) return <p className="display-5 text-center">Loading...</p>;
+    if (!product) return <Loading />;
 
     const priceStr = product.price.toLocaleString("id-ID");
 
