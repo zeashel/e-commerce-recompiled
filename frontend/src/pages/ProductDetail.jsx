@@ -1,9 +1,11 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import BackButton from "../components/BackButton";
 import { getProductById } from "../services/productService";
 import { addToCart } from "../services/cartService";
 import { resolveImageUrl } from "../utils/resolveImageUrl";
+import { isLoggedIn } from "../utils/authHelper";
+
+import BackButton from "../components/BackButton";
 import Alert from "../components/Alert";
 
 export default function ProductDetail() {
@@ -41,8 +43,8 @@ export default function ProductDetail() {
     }
 
     const priceElem =
-        // if discounted
         product.discount !== null && product.discount !== undefined ? (
+            // if discounted
             <>
                 <h2 className="text-primary">Rp{priceDiscountedStr} </h2>
                 <p>
@@ -77,13 +79,25 @@ export default function ProductDetail() {
                         src={resolveImageUrl(product.img)}
                     />
                     <div className="d-flex gap-2 my-3 w-100">
-                        <button
-                            className="btn btn-primary btn-lg hover-btn"
-                            onClick={() => addToCartButton()}
-                            title="Add to Cart"
-                        >
-                            Add to Cart
-                        </button>
+                        {isLoggedIn() ? (
+                            // if logged in, add item to cart
+                            <button
+                                className="btn btn-primary btn-lg hover-btn"
+                                onClick={() => addToCartButton()}
+                                title="Add to Cart"
+                            >
+                                Add to Cart
+                            </button>
+                        ) : (
+                            // if not logged in, direct to /login (/cart protected) with error message
+                            <Link
+                                className="btn btn-primary btn-lg hover-btn"
+                                to="/cart"
+                                title="Add to Cart"
+                            >
+                                Add to Cart
+                            </Link>
+                        )}
                         <button
                             className="btn btn-outline-primary btn-lg hover-btn"
                             title="Add to Wishlist"
