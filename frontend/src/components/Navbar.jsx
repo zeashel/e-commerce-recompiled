@@ -28,6 +28,53 @@ function Navbar() {
         navigate("/login");
     }
 
+    function cartButton(isDesktop = true) {
+        return (
+            <NavLink
+                to="/cart"
+                // if desktop / if mobile
+                className={`btn btn-outline-primary me-2 position-relative ${
+                    isDesktop ? "d-none d-sm-block" : "d-sm-none"
+                }`}
+                // if desktop / if mobile
+                title={`My Cart ${isDesktop ? "Desktop" : "Mobile"}`}
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1.5em"
+                    height="1.5em"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{
+                        marginBottom: "2px",
+                        marginRight: "2px",
+                    }}
+                    className="lucide lucide-shopping-cart-icon lucide-shopping-cart"
+                >
+                    <circle cx="8" cy="21" r="1" />
+                    <circle cx="19" cy="21" r="1" />
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                </svg>
+                {cartCount > 0 && loggedIn && (
+                    <span
+                        className="position-absolute top-0 start-0 translate-middle badge rounded-pill text-bg-light"
+                        style={{
+                            fontSize: "0.6rem",
+                        }}
+                        aria-live="polite"
+                    >
+                        {displayCount}
+                        <span className="visually-hidden">items in cart</span>
+                    </span>
+                )}
+            </NavLink>
+        );
+    }
+
     return (
         <nav className="navbar navbar-expand-sm bg-body-secondary shadow mb-3 sticky-top z-100">
             <div className="container-fluid">
@@ -58,46 +105,7 @@ function Navbar() {
 
                 <div className="d-flex align-items-stretch">
                     {/* CART (MOBILE) */}
-                    <NavLink
-                        to="/cart"
-                        className="btn btn-outline-primary me-2 position-relative d-sm-none"
-                        title="My Cart (Mobile)"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="1.5em"
-                            height="1.5em"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            style={{
-                                marginBottom: "2px",
-                                marginRight: "2px",
-                            }}
-                            className="lucide lucide-shopping-cart-icon lucide-shopping-cart"
-                        >
-                            <circle cx="8" cy="21" r="1" />
-                            <circle cx="19" cy="21" r="1" />
-                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-                        </svg>
-                        {cartCount > 0 && loggedIn && (
-                            <span
-                                className="position-absolute top-0 start-0 translate-middle badge rounded-pill text-bg-light"
-                                style={{
-                                    fontSize: "0.6rem",
-                                }}
-                                aria-live="polite"
-                            >
-                                {displayCount}
-                                <span className="visually-hidden">
-                                    items in cart
-                                </span>
-                            </span>
-                        )}
-                    </NavLink>
+                    {cartButton(false)}
                     {/* MOBILE MENU */}
                     <button
                         className="navbar-toggler"
@@ -144,46 +152,7 @@ function Navbar() {
                     {/* right collapse */}
                     <div className="d-flex ms-auto">
                         {/* CART (DESKTOP) */}
-                        <NavLink
-                            to="/cart"
-                            className="btn btn-outline-primary me-2 position-relative d-none d-sm-block"
-                            title="My Cart (Desktop)"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="1.5em"
-                                height="1.5em"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                style={{
-                                    marginBottom: "2px",
-                                    marginRight: "2px",
-                                }}
-                                className="lucide lucide-shopping-cart-icon lucide-shopping-cart"
-                            >
-                                <circle cx="8" cy="21" r="1" />
-                                <circle cx="19" cy="21" r="1" />
-                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-                            </svg>
-                            {cartCount > 0 && loggedIn && (
-                                <span
-                                    className="position-absolute top-0 start-0 translate-middle badge rounded-pill text-bg-light"
-                                    style={{
-                                        fontSize: "0.6rem",
-                                    }}
-                                    aria-live="polite"
-                                >
-                                    {displayCount}
-                                    <span className="visually-hidden">
-                                        items in cart
-                                    </span>
-                                </span>
-                            )}
-                        </NavLink>
+                        {cartButton(true)}
                         {/* AUTH BUTTONS */}
                         {loggedIn ? (
                             <>
