@@ -86,7 +86,17 @@ export default function Register() {
                             className="btn btn-primary w-100 py-2"
                             disabled={loading}
                         >
-                            {loading ? "Registering..." : "Register"}
+                            {loading ? (
+                                <>
+                                    <span
+                                        className="spinner-border spinner-border-sm"
+                                        aria-hidden="true"
+                                    ></span>{" "}
+                                    <span>Registering...</span>
+                                </>
+                            ) : (
+                                "Register"
+                            )}
                         </button>
                     </form>
 

@@ -101,7 +101,17 @@ export default function Login() {
                             className="btn btn-primary w-100 py-2"
                             disabled={loading}
                         >
-                            {loading ? "Logging in..." : "Login"}
+                            {loading ? (
+                                <>
+                                    <span
+                                        className="spinner-border spinner-border-sm"
+                                        aria-hidden="true"
+                                    ></span>{" "}
+                                    <span>Logging in...</span>
+                                </>
+                            ) : (
+                                "Login"
+                            )}
                         </button>
                     </form>
 
