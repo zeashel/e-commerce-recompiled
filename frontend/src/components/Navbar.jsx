@@ -158,7 +158,7 @@ function Navbar() {
                             <>
                                 <button
                                     onClick={handleLogout}
-                                    className="btn btn-outline-primary"
+                                    className="btn btn-outline-primary w-100"
                                 >
                                     Logout
                                 </button>
@@ -167,13 +167,13 @@ function Navbar() {
                             <>
                                 <NavLink
                                     to="/login"
-                                    className="btn btn-outline-primary me-2"
+                                    className="btn btn-outline-primary me-2 w-100"
                                 >
                                     Login
                                 </NavLink>
                                 <NavLink
                                     to="/register"
-                                    className="btn btn-outline-primary"
+                                    className="btn btn-outline-primary w-100"
                                 >
                                     Register
                                 </NavLink>
